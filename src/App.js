@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react'
+import ItemInput from './ItemInput'
+import ItemPanel, { useItems } from './item-panel'
 
-function App() {
+const App = () => {
+  const [items, deleteItem, addItem] = useItems()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Fragment>
+      <section className="section">
+        <div className="container">
+          <h1 className="title">Add your things here</h1>
+          <ItemInput {...{ addItem }} />
+        </div>
+      </section>
+      <ItemPanel {...{ items, deleteItem }} />
+    </Fragment>
+  )
 }
 
-export default App;
+export default App

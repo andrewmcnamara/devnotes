@@ -5,7 +5,10 @@ const Items = ({ items = [], deleteItem }) => (
   <div className="list">
     {items.map((item, idx) => (
       <div className="list-item" key={idx}>
-        {' '}
+        <button
+          className="delete danger is-medium"
+          onClick={() => deleteItem(item)}
+        />
         {item}
       </div>
     ))}

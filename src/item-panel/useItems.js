@@ -1,5 +1,4 @@
 import { useImmerReducer } from 'use-immer'
-import produce from 'immer'
 
 const initItems = (items = []) => ({ items })
 
@@ -10,7 +9,11 @@ const itemReducer = (draft, action) => {
       return void draft.items.push(action.payload)
     // return { items: items.concat() }
     case 'delete':
-    // return { items: items.filter(item => item !== action.payload) }
+      return void draft.items.splice(
+        draft.items.findIndex(item => item === action.payload),
+        1,
+      )
+
     case 'reset':
       return initItems(action.payload)
     default:
